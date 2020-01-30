@@ -1,0 +1,115 @@
+<html>
+    
+    <head>
+        
+        <title>reation tester</title>
+        
+        <style type="text/css">
+            
+            #shape{
+                
+               
+                background-color: red;
+                display: none;
+                position: relative;
+            }
+            
+            .bold{
+                
+                font-weight: bold;
+            }
+            
+            body{
+                
+                font-family: sans-serif;
+            }
+        
+        
+        
+        </style>
+    
+    </head>
+    
+    <body>
+        
+        <h1>Reaction Tester</h1>
+        
+        <p>Click on the boxes as quickly as possible!</p>
+        
+        <p class="bold">Your Time:<span id="time"></span></p>
+        
+        <div id="shape"></div>
+        
+        <script type="text/javascript">
+            
+             var start = new Date().getTime();
+            
+            function get_random_color() 
+                {
+                    var color = "";
+                    for(var i = 0; i < 3; i++) {
+                        var sub = Math.floor(Math.random() * 256).toString(16);
+                        color += (sub.length == 1 ? "0" + sub : sub);
+                    }
+                    return "#" + color;
+                }
+            
+            function makeShapeAppear(){
+                
+                var size=(Math.random()*170)+30+"px";
+                
+                document.getElementById("shape").style.backgroundColor=get_random_color();
+                
+                if(Math.random()>0.5){
+                    
+                    document.getElementById("shape").style.borderRadius="50%";
+                }
+                else{
+                    
+                     document.getElementById("shape").style.borderRadius="0";
+                 
+                }
+                
+                document.getElementById("shape").style.width=size;
+                
+                document.getElementById("shape").style.height=size;
+                
+              document.getElementById("shape").style.top=Math.random()*400+"px";
+                 document.getElementById("shape").style.left=Math.random()*600+"px";
+                
+                document.getElementById("shape").style.display="block";
+                
+                start = new Date().getTime();
+            }
+            
+         function appearAfterDelay(){
+             
+                 setTimeout(makeShapeAppear,Math.random()*2000); 
+         }
+            
+            appearAfterDelay();
+       
+             document.getElementById("shape").onclick=function(){
+
+             var end = new Date().getTime();
+
+             document.getElementById("shape").style.display="none";
+
+             var timeTaken=(end-start)/1000;
+
+            document.getElementById("time").innerHTML=timeTaken;
+                 
+            
+                   appearAfterDelay();
+                
+         }
+ 
+
+        
+        </script>
+    
+    
+    </body>
+
+
+</html>
